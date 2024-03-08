@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
@@ -15,12 +15,12 @@ import { useUserContext } from "@/context/AuthContext";
 
 const SignupForm = () => {
   const { toast } = useToast()
-  const { checkAuthUser, isLoading: isUserLoading} = useUserContext();
+  const { checkAuthUser} = useUserContext();
   const navigate = useNavigate();
 
   const{mutateAsync : createUserAccount, isPending : isCreatingAccount} = useCreateUserAccount();
   
-  const {mutateAsync: signInAccount, isPending: isSigningIn } = useSignInAccount();
+  const {mutateAsync: signInAccount } = useSignInAccount();
   
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
